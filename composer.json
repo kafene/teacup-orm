@@ -1,0 +1,24 @@
+{
+	"name": "teacup/orm",
+	"type": "library",
+	"description": "Tiny ORM for simple CRUD operations.",
+	"keywords": ["orm", "pdo", "database"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Daniel Melzer",
+			"email": "daniel@melzer.ws",
+			"homepage": "http://daniel.melzer.ws",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/daniel-melzer/Teacup/issues"
+	},
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"autoload": {
+		"classmap": ["ActiveRecord.php", "Storage.php"]
+	}
+}
