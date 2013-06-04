@@ -81,6 +81,7 @@ class ActiveRecord {
 	 *
 	 * @param string $property
 	 * @param mixed $value
+	 * @return null
 	 */
 	public function __set($property, $value) {
 		$property = $this->sanitizePropertyName($property);
@@ -249,6 +250,29 @@ class ActiveRecord {
 		if(is_array($data)) {
 			$class = get_called_class();
 			$return = new $class($data);
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Performs a custom query and returns an array of objects of the called class.
+	 *
+	 * @static
+	 * @param string $sql
+	 * @return mixed
+	 */
+	static public function query($sql) {
+		$return = null;
+		$storage = Storage::get(static::$storage);
+
+		$result = $storage->query($sql);
+		if(false !== $result) {
+			$class = get_called_class();
+
+			while($data = $result->fetch(\PDO::FETCH_ASSOC)) {
+				$return[] = new $class($data);
+			}
 		}
 
 		return $return;
