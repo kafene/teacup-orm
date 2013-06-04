@@ -3,6 +3,7 @@
 	"type": "library",
 	"description": "Tiny ORM for simple CRUD operations.",
 	"keywords": ["orm", "pdo", "database"],
+	"version": "0.2.0",
 	"license": "MIT",
 	"authors": [
 		{
