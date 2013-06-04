@@ -211,6 +211,15 @@ class ActiveRecord {
 	}
 
 	/**
+	 * Returns an array representation of the current object.
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		return $this->data;
+	}
+
+	/**
 	 * Get the value of the primary key.
 	 *
 	 * @return int
