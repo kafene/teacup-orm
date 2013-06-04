@@ -226,6 +226,7 @@ class ActiveRecord {
 	 * @return object
 	 */
 	static public function retrieveByPK($key) {
+		$return = null;
 		$storage = Storage::get(static::$storage);
 		$sql = sprintf(
 				'SELECT * FROM %s WHERE %s = ?',
@@ -234,10 +235,14 @@ class ActiveRecord {
 		);
 		$query = $storage->prepare($sql);
 		$query->execute(array($key));
+		$data = $query->fetch(\PDO::FETCH_ASSOC);
 
-		$class = get_called_class();
+		if(is_array($data)) {
+			$class = get_called_class();
+			$return = new $class($data);
+		}
 
-		return new $class($query->fetch(\PDO::FETCH_ASSOC));
+		return $return;
 	}
 
 	/**
